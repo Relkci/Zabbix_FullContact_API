@@ -9,9 +9,15 @@ Zabbix Data Collector For FullContact API Provider
 * [Features](#features)
 * [Details](#details)
 * [Triggers](#triggers)
+* [Macros](#macros)
+* [Tags](#tags)
 * [Known Limitations &amp; Issues](#known-limitations--issues)
 * [Screenshots](#screenshots)
 	* [Credits Graph](#credits-graph)
+	* [Company Enrichment Dashboard](#company-enrichment-dashboard)
+	* [Person Enrichment Dashboard](#person-enrichment-dashboard)
+	* [Person Subscription Dashboard](#person-subscription-dashboard)
+* [Updates](#updates)
 * [Contact](#contact)
 * [License](#license)
 * [Thanks](#thanks)
@@ -41,17 +47,31 @@ This template is used to monitor and alert on FullContact Account usage.
 - 4 Graphs
 - 1 Dashboard
 
-
 ## Triggers
 - Credits Plan Change
-For each of the following, Person and Company, Enrichments and Subscriptions
+For each of the following, Person and Company, Enrichment and Subscriptions
 - Credits Overage
 - Credits 50% Used
 - Credits 90% Used
 
+## Macros 
+- {$FULLCONTACTAPIKEY}  (API Key for FullContact)
+
+## Tags
+- Application:API
+- Application:FullContact
+- API:FullContact
+- FullContact:Quota (Quota)
+- FullContact:Count (Count)
+- FullContact:Overquota (Over Quota Use)
+- FullContact:Account (Account Info)
+- FullContact:Data (JSON API Data Source)
+- FullContact:CompanyEnrichment (Company Enrichment Stats)
+- FullContact:PersonEnrichment (Person Enrichment Stats)
 
 ## Known Limitations & Issues
 - Quota items may not populate properly if a plan is not purchased
+- Count is the same as "use" and unlike a typical result count attribute (this is done to match the endpoint scheme, despite it being confusing)
 
 
 ## Screenshots
@@ -59,6 +79,18 @@ For each of the following, Person and Company, Enrichments and Subscriptions
 ### Credits Graph
 ![](screenshots/graph1.png)
 
+### Company Enrichment Dashboard
+![](screenshots/graph2.png)
+
+### Person Enrichment Dashboard
+![](screenshots/grpah3.png)
+
+### Person Subscription Dashboard
+![](screenshots/graph4.png)
+
+
+## Updates 
+- Nov 17 2021: Updated tags, updated screenshots, added export format
 ## Contact
 @Krelkci (twitter)   @ Relkci (Github)
 

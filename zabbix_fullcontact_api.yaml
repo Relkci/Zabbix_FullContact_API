@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.4'
-  date: '2021-10-02T04:26:20Z'
+  date: '2021-11-17T23:36:23Z'
   groups:
     -
       uuid: c1042abaca9d435ca00326c24768d8b8
@@ -30,7 +30,13 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
+            -
+              tag: FullContact
               value: Count
         -
           uuid: fc28da0aff55419f8d84a75fa8cdb4d4
@@ -52,7 +58,13 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
+            -
+              tag: FullContact
               value: Overquota
           triggers:
             -
@@ -86,8 +98,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
-              value: quota
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
+            -
+              tag: FullContact
+              value: Quota
           triggers:
             -
               uuid: 9476fa8ab9434c62bb5aae33714c7dfe
@@ -116,7 +134,13 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
+            -
+              tag: FullContact
               value: Count
         -
           uuid: 7064c98f58d741f79001cc860f433c22
@@ -138,7 +162,13 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
+            -
+              tag: FullContact
               value: Overquota
           triggers:
             -
@@ -172,8 +202,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
-              value: quota
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
+            -
+              tag: FullContact
+              value: Quota
           triggers:
             -
               uuid: 636b7c06e8144fc6a910758b96fe72c0
@@ -209,6 +245,12 @@ zabbix_export:
             -
               tag: API-Status
               value: Overages
+            -
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
         -
           uuid: 5149783f2e4b42a1960cf54d59fa47a2
           name: 'Full Contact API Company Enrichment Total Count'
@@ -225,7 +267,13 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
+            -
+              tag: FullContact
               value: Count
         -
           uuid: 4e82a57246124268a228e8b803cd0a65
@@ -247,7 +295,13 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
+            -
+              tag: FullContact
               value: Overquota
           triggers:
             -
@@ -281,8 +335,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
-              value: quota
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: CompanyEnrichment
+            -
+              tag: FullContact
+              value: Quota
           triggers:
             -
               uuid: 9e0c945e5a9c4e87ad9431e253526f7c
@@ -315,6 +375,13 @@ zabbix_export:
               value: application/json
           request_method: POST
           verify_peer: 'YES'
+          tags:
+            -
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: Data
         -
           uuid: f971e01ffeca4f8787d8f1f8cfa799cb
           name: 'Full Contact API Person Enrichment Match Count'
@@ -331,8 +398,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
               value: Count
+            -
+              tag: FullContact
+              value: PersonEnrichment
         -
           uuid: b9f093506b3e460fbf02239ae184c0b3
           name: 'Full Contact API Person Enrichment Match Over Quota'
@@ -353,8 +426,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
               value: Overquota
+            -
+              tag: FullContact
+              value: PersonEnrichment
           triggers:
             -
               uuid: 5d50eb3b58f34011b3f506a86881f253
@@ -387,8 +466,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
-              value: quota
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: PersonEnrichment
+            -
+              tag: FullContact
+              value: Quota
         -
           uuid: 819dbac47e8a4056aa392adbba1ba8c5
           name: 'Full Contact API Person Enrichment Miss Count'
@@ -405,8 +490,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
               value: Count
+            -
+              tag: FullContact
+              value: PersonEnrichment
         -
           uuid: 3464deab2f5e444e8a898eb4abf1ae37
           name: 'Full Contact API Person Enrichment Miss Over Quota'
@@ -427,8 +518,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
               value: Overquota
+            -
+              tag: FullContact
+              value: PersonEnrichment
           triggers:
             -
               uuid: 711f88ec645d4d519f6bf5381003572e
@@ -461,8 +558,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
-              value: quota
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: PersonEnrichment
+            -
+              tag: FullContact
+              value: Quota
           triggers:
             -
               uuid: 7bb152a765c8451c99ea75860d8be055
@@ -494,6 +597,12 @@ zabbix_export:
             -
               tag: API-Status
               value: Overages
+            -
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: PersonEnrichment
         -
           uuid: 3d68bdbe8e9642c7a4ca26b90d1137fe
           name: 'Full Contact API Person Enrichment Total Count'
@@ -510,8 +619,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
               value: Count
+            -
+              tag: FullContact
+              value: PersonEnrichment
         -
           uuid: 4cd00ea886514e29b602ffe02a5a9922
           name: 'Full Contact API Person Enrichment Total Over Quota'
@@ -532,8 +647,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
               value: Overquota
+            -
+              tag: FullContact
+              value: PersonEnrichment
         -
           uuid: 76048f9d6bab4664abf37cce1524e236
           name: 'Full Contact API Person Enrichment Total Quota'
@@ -550,8 +671,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
-              value: quota
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: PersonEnrichment
+            -
+              tag: FullContact
+              value: Quota
           triggers:
             -
               uuid: 9456936dc0f249799a3b2c4e23d2bf7d
@@ -580,8 +707,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
               value: Count
+            -
+              tag: FullContact
+              value: PersonEnrichment
         -
           uuid: feb0a720d1e640088057aa31d1afc391
           name: 'Full Contact API Person Subscription Over Quota'
@@ -602,8 +735,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
               value: Overquota
+            -
+              tag: FullContact
+              value: PersonEnrichment
           triggers:
             -
               uuid: ce31204be31241b0a52503b276be1304
@@ -636,8 +775,14 @@ zabbix_export:
             key: fullcontact.api.data
           tags:
             -
-              tag: API-Status
-              value: quota
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: PersonEnrichment
+            -
+              tag: FullContact
+              value: Quota
           triggers:
             -
               uuid: 35d809be9f0f4515ac829cf8c901f6e4
@@ -669,6 +814,12 @@ zabbix_export:
             -
               tag: API-Status
               value: Plan
+            -
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: Account
           triggers:
             -
               uuid: cf29e3b7ad434c718f55c43ec751c05c
@@ -696,6 +847,13 @@ zabbix_export:
                 - $.plan.period
           master_item:
             key: fullcontact.api.data
+          tags:
+            -
+              tag: Application
+              value: FullContact
+            -
+              tag: FullContact
+              value: Account
       tags:
         -
           tag: API

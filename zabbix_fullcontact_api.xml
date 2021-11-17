@@ -1,0 +1,1617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zabbix_export>
+	<version>5.4</version>
+	<date>2021-11-17T23:37:01Z</date>
+	<groups>
+		<group>
+			<uuid>c1042abaca9d435ca00326c24768d8b8</uuid>
+			<name>API Providers</name>
+		</group>
+	</groups>
+	<templates>
+		<template>
+			<uuid>a4cca93dc0d74fd994a9244e188d1ec6</uuid>
+			<template>FullContact API Provider</template>
+			<name>FullContact API Provider</name>
+			<groups>
+				<group>
+					<name>API Providers</name>
+				</group>
+			</groups>
+			<items>
+				<item>
+					<uuid>b8106effb22547ff9cd4f6d4cdbc5272</uuid>
+					<name>Full Contact API Company Enrichment Match Count</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.match.count</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.matches.count</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Count</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>fc28da0aff55419f8d84a75fa8cdb4d4</uuid>
+					<name>Full Contact API Company Enrichment Match Over Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.match.overquota</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.matches.overQuota</parameter>
+							</parameters>
+						</step>
+						<step>
+							<type>BOOL_TO_DECIMAL</type>
+							<parameters>
+								<parameter/>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Overquota</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>562f45f525b242c79eaa4ee57704d463</uuid>
+							<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.overquota)=1</expression>
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.overquota)=0</recovery_expression>
+							<name>Full Contact API Company Enrichment Match Over Quota</name>
+							<opdata>FullContact API Provider/fullcontact.api.company.enrichment.match.count</opdata>
+							<priority>HIGH</priority>
+							<tags>
+								<tag>
+									<tag>API</tag>
+									<value>FullContact</value>
+								</tag>
+								<tag>
+									<tag>API-Status</tag>
+									<value>OverQuota</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>549e3346ff2f47f9a64ee68ae010ad8b</uuid>
+					<name>Full Contact API Company Enrichment Match Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.match.quota</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.matches.quota</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Quota</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>9476fa8ab9434c62bb5aae33714c7dfe</uuid>
+							<expression>change(/FullContact API Provider/fullcontact.api.company.enrichment.match.quota)&lt;&gt;0</expression>
+							<name>Full Contact API Company Enrichment Match Quota Has Changed</name>
+							<opdata>/FullContact API Provider/fullcontact.api.company.enrichment.match.quota</opdata>
+							<priority>INFO</priority>
+							<manual_close>YES</manual_close>
+							<tags>
+								<tag>
+									<tag>API-Status</tag>
+									<value>Quota Change</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>713b20e015154042964fde19732140d7</uuid>
+					<name>Full Contact API Company Enrichment Miss Count</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.miss.count</key>
+					<delay>0</delay>
+					<units>Misses</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.misses.count</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Count</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>7064c98f58d741f79001cc860f433c22</uuid>
+					<name>Full Contact API Company Enrichment Miss Over Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.miss.overquota</key>
+					<delay>0</delay>
+					<units>Misses</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.misses.overQuota</parameter>
+							</parameters>
+						</step>
+						<step>
+							<type>BOOL_TO_DECIMAL</type>
+							<parameters>
+								<parameter/>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Overquota</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>c2546b0aca5f4eeda24ee2fcc46a54eb</uuid>
+							<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.overquota)=1</expression>
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.overquota)=0</recovery_expression>
+							<name>Full Contact API Company Enrichment Miss Over Quota</name>
+							<opdata>FullContact API Provider/fullcontact.api.company.enrichment.misses.count</opdata>
+							<priority>HIGH</priority>
+							<tags>
+								<tag>
+									<tag>API</tag>
+									<value>FullContact</value>
+								</tag>
+								<tag>
+									<tag>API-Status</tag>
+									<value>OverQuota</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>ff036956a48a4dffa223de41018f6da2</uuid>
+					<name>Full Contact API Company Enrichment Miss Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.miss.quota</key>
+					<delay>0</delay>
+					<units>Misses</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.misses.quota</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Quota</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>636b7c06e8144fc6a910758b96fe72c0</uuid>
+							<expression>change(/FullContact API Provider/fullcontact.api.company.enrichment.miss.quota)&lt;&gt;0</expression>
+							<name>Full Contact API Company Enrichment Miss Quota Has Changed</name>
+							<opdata>/FullContact API Provider/fullcontact.api.company.enrichment.miss.quota</opdata>
+							<priority>INFO</priority>
+							<manual_close>YES</manual_close>
+							<tags>
+								<tag>
+									<tag>API-Status</tag>
+									<value>Quota Change</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>ed7a280ef5e74628b5ebc106a56119a9</uuid>
+					<name>Full Contact API Company Enrichment Overages</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.overages</key>
+					<delay>0</delay>
+					<trends>0</trends>
+					<value_type>TEXT</value_type>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.overages</parameter>
+							</parameters>
+						</step>
+						<step>
+							<type>BOOL_TO_DECIMAL</type>
+							<parameters>
+								<parameter/>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>API-Status</tag>
+							<value>Overages</value>
+						</tag>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>5149783f2e4b42a1960cf54d59fa47a2</uuid>
+					<name>Full Contact API Company Enrichment Total Count</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.total.count</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.total.count</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Count</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>4e82a57246124268a228e8b803cd0a65</uuid>
+					<name>Full Contact API Company Enrichment Total Over Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.total.overquota</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.total.overQuota</parameter>
+							</parameters>
+						</step>
+						<step>
+							<type>BOOL_TO_DECIMAL</type>
+							<parameters>
+								<parameter/>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Overquota</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>edec00bbedc84ffb920a340be84fb124</uuid>
+							<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.total.overquota)=1</expression>
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.total.overquota)=0</recovery_expression>
+							<name>Full Contact API Company Enrichment Total Over Quota</name>
+							<opdata>FullContact API Provider/fullcontact.api.company.enrichment.total.count</opdata>
+							<priority>HIGH</priority>
+							<tags>
+								<tag>
+									<tag>API</tag>
+									<value>FullContact</value>
+								</tag>
+								<tag>
+									<tag>API-Status</tag>
+									<value>OverQuota</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>7aabe37c7caa4eaea55cb5d774b17f23</uuid>
+					<name>Full Contact API Company Enrichment Total Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.company.enrichment.total.quota</key>
+					<delay>0</delay>
+					<units>Requests</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.company.enrichment.total.quota</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>CompanyEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Quota</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>9e0c945e5a9c4e87ad9431e253526f7c</uuid>
+							<expression>change(/FullContact API Provider/fullcontact.api.company.enrichment.total.quota)&lt;&gt;0</expression>
+							<name>Full Contact API Company Enrichment Total Quota Has Changed</name>
+							<opdata>/FullContact API Provider/fullcontact.api.company.enrichment.total.quota</opdata>
+							<priority>INFO</priority>
+							<manual_close>YES</manual_close>
+							<tags>
+								<tag>
+									<tag>API-Status</tag>
+									<value>Quota Change</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>f2f3341e888f4a23b4a583d6310cd008</uuid>
+					<name>fullcontact.api.data</name>
+					<type>HTTP_AGENT</type>
+					<key>fullcontact.api.data</key>
+					<delay>5m</delay>
+					<history>1h</history>
+					<trends>0</trends>
+					<value_type>TEXT</value_type>
+					<timeout>5s</timeout>
+					<url>https://api.fullcontact.com/v3/stats.get</url>
+					<headers>
+						<header>
+							<name>Authorization</name>
+							<value>Bearer {$FULLCONTACTAPIKEY}</value>
+						</header>
+						<header>
+							<name>Content-Type</name>
+							<value>application/json</value>
+						</header>
+					</headers>
+					<request_method>POST</request_method>
+					<verify_peer>YES</verify_peer>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Data</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>f971e01ffeca4f8787d8f1f8cfa799cb</uuid>
+					<name>Full Contact API Person Enrichment Match Count</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.match.count</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.matches.count</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Count</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>b9f093506b3e460fbf02239ae184c0b3</uuid>
+					<name>Full Contact API Person Enrichment Match Over Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.match.overquota</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.matches.overquota</parameter>
+							</parameters>
+						</step>
+						<step>
+							<type>BOOL_TO_DECIMAL</type>
+							<parameters>
+								<parameter/>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Overquota</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>5d50eb3b58f34011b3f506a86881f253</uuid>
+							<expression>last(/FullContact API Provider/fullcontact.api.person.enrichment.match.overquota)=1</expression>
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>last(/FullContact API Provider/fullcontact.api.person.enrichment.match.overquota)=0</recovery_expression>
+							<name>Full Contact API Person Enrichment Match Over Quota</name>
+							<opdata>FullContact API Provider/fullcontact.api.person.enrichment.matches.count</opdata>
+							<priority>HIGH</priority>
+							<tags>
+								<tag>
+									<tag>API</tag>
+									<value>FullContact</value>
+								</tag>
+								<tag>
+									<tag>API-Status</tag>
+									<value>OverQuota</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>dc675071688e41b98fcd905fd17401f4</uuid>
+					<name>Full Contact API Person Enrichment Match Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.match.quota</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.matches.quota</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Quota</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>819dbac47e8a4056aa392adbba1ba8c5</uuid>
+					<name>Full Contact API Person Enrichment Miss Count</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.miss.count</key>
+					<delay>0</delay>
+					<units>Misses</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.misses.count</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Count</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>3464deab2f5e444e8a898eb4abf1ae37</uuid>
+					<name>Full Contact API Person Enrichment Miss Over Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.miss.overQuota</key>
+					<delay>0</delay>
+					<units>Misses</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.misses.quota</parameter>
+							</parameters>
+						</step>
+						<step>
+							<type>BOOL_TO_DECIMAL</type>
+							<parameters>
+								<parameter/>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Overquota</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>711f88ec645d4d519f6bf5381003572e</uuid>
+							<expression>last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.overQuota)=1</expression>
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.overQuota)=0</recovery_expression>
+							<name>Full Contact API Person Enrichment Miss Over Quota</name>
+							<opdata>FullContact API Provider/fullcontact.api.person.enrichment.misses.count</opdata>
+							<priority>HIGH</priority>
+							<tags>
+								<tag>
+									<tag>API</tag>
+									<value>FullContact</value>
+								</tag>
+								<tag>
+									<tag>API-Status</tag>
+									<value>OverQuota</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>6fe5e5a861cf4e4087fbbb168ff7cbc8</uuid>
+					<name>Full Contact API Person Enrichment Miss Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.miss.quota</key>
+					<delay>0</delay>
+					<units>Misses</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.misses.quota</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Quota</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>7bb152a765c8451c99ea75860d8be055</uuid>
+							<expression>change(/FullContact API Provider/fullcontact.api.person.enrichment.miss.quota)&lt;&gt;0</expression>
+							<name>Full Contact API Person Enrichment Miss Quota Has Changed</name>
+							<opdata>/FullContact API Provider/fullcontact.api.person.enrichment.miss.quota</opdata>
+							<priority>INFO</priority>
+							<manual_close>YES</manual_close>
+							<tags>
+								<tag>
+									<tag>API-Status</tag>
+									<value>Quota Change</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>6f070ee64b1e47fdacbff81868973154</uuid>
+					<name>Full Contact API Person Enrichment Overages</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.overages</key>
+					<delay>0</delay>
+					<trends>0</trends>
+					<value_type>TEXT</value_type>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.overages</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>API-Status</tag>
+							<value>Overages</value>
+						</tag>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>3d68bdbe8e9642c7a4ca26b90d1137fe</uuid>
+					<name>Full Contact API Person Enrichment Total Count</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.total.count</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.total.count</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Count</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>4cd00ea886514e29b602ffe02a5a9922</uuid>
+					<name>Full Contact API Person Enrichment Total Over Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.total.overquota</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.total.overQuota</parameter>
+							</parameters>
+						</step>
+						<step>
+							<type>BOOL_TO_DECIMAL</type>
+							<parameters>
+								<parameter/>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Overquota</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>76048f9d6bab4664abf37cce1524e236</uuid>
+					<name>Full Contact API Person Enrichment Total Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.enrichment.total.quota</key>
+					<delay>0</delay>
+					<units>Matches</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.enrichment.total.quota</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Quota</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>9456936dc0f249799a3b2c4e23d2bf7d</uuid>
+							<expression>change(/FullContact API Provider/fullcontact.api.person.enrichment.total.quota)&lt;&gt;0</expression>
+							<name>Full Contact API Person Enrichment Total Quota Has Changed</name>
+							<opdata>/FullContact API Provider/fullcontact.api.person.enrichment.total.quota</opdata>
+							<priority>INFO</priority>
+							<manual_close>YES</manual_close>
+							<tags>
+								<tag>
+									<tag>API-Status</tag>
+									<value>Quota Change</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>5778cb99c787487eabd3e5dcca35fde1</uuid>
+					<name>Full Contact API Person Subscription Count</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.subscriptions.count</key>
+					<delay>0</delay>
+					<units>Subscriptions</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.subscriptions.count</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Count</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+					</tags>
+				</item>
+				<item>
+					<uuid>feb0a720d1e640088057aa31d1afc391</uuid>
+					<name>Full Contact API Person Subscription Over Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.subscriptions.overquota</key>
+					<delay>0</delay>
+					<units>Subscriptions</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.subscriptions.overQuota</parameter>
+							</parameters>
+						</step>
+						<step>
+							<type>BOOL_TO_DECIMAL</type>
+							<parameters>
+								<parameter/>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Overquota</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>ce31204be31241b0a52503b276be1304</uuid>
+							<expression>last(/FullContact API Provider/fullcontact.api.person.subscriptions.overquota)=1</expression>
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>last(/FullContact API Provider/fullcontact.api.person.subscriptions.overquota)=0</recovery_expression>
+							<name>Full Contact API Person Subscription Over Quota</name>
+							<opdata>FullContact API Provider/fullcontact.api.person.subscription.count</opdata>
+							<priority>HIGH</priority>
+							<tags>
+								<tag>
+									<tag>API</tag>
+									<value>FullContact</value>
+								</tag>
+								<tag>
+									<tag>API-Status</tag>
+									<value>OverQuota</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>0aec845e2eb24a529e9195cbdf5f338b</uuid>
+					<name>Full Contact API Person Subscription Quota</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.person.subscriptions.quota</key>
+					<delay>0</delay>
+					<units>Subscriptions</units>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.stats.person.subscriptions.quota</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>PersonEnrichment</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Quota</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>35d809be9f0f4515ac829cf8c901f6e4</uuid>
+							<expression>change(/FullContact API Provider/fullcontact.api.person.subscriptions.quota)&lt;&gt;0</expression>
+							<name>Full Contact API Person Subscription Quota Has Changed</name>
+							<opdata>/FullContact API Provider/fullcontact.api.person.subscriptions.quota</opdata>
+							<priority>INFO</priority>
+							<manual_close>YES</manual_close>
+							<tags>
+								<tag>
+									<tag>API-Status</tag>
+									<value>Quota Change</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>f2cbb33cf3d7422b97b80f8699ed1654</uuid>
+					<name>Full Contact API Plan</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.plan</key>
+					<delay>0</delay>
+					<trends>0</trends>
+					<value_type>TEXT</value_type>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.plan.name</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>API-Status</tag>
+							<value>Plan</value>
+						</tag>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Account</value>
+						</tag>
+					</tags>
+					<triggers>
+						<trigger>
+							<uuid>cf29e3b7ad434c718f55c43ec751c05c</uuid>
+							<expression>change(/FullContact API Provider/fullcontact.api.plan)&lt;&gt;0</expression>
+							<name>Full Contact API Plan Has Changed</name>
+							<opdata>(/FullContact API Provider/fullcontact.api.plan)</opdata>
+							<priority>INFO</priority>
+							<manual_close>YES</manual_close>
+							<tags>
+								<tag>
+									<tag>API-Status</tag>
+									<value>Plan Change</value>
+								</tag>
+							</tags>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<uuid>3b5431c5026642869bb4eefc0f656cc8</uuid>
+					<name>Full Contact API Plan Period</name>
+					<type>DEPENDENT</type>
+					<key>fullcontact.api.plan.period</key>
+					<delay>0</delay>
+					<trends>0</trends>
+					<value_type>TEXT</value_type>
+					<preprocessing>
+						<step>
+							<type>JSONPATH</type>
+							<parameters>
+								<parameter>$.plan.period</parameter>
+							</parameters>
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>fullcontact.api.data</key>
+					</master_item>
+					<tags>
+						<tag>
+							<tag>Application</tag>
+							<value>FullContact</value>
+						</tag>
+						<tag>
+							<tag>FullContact</tag>
+							<value>Account</value>
+						</tag>
+					</tags>
+				</item>
+			</items>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>Application</tag>
+					<value>API Provider</value>
+				</tag>
+				<tag>
+					<tag>Application</tag>
+					<value>FullContact</value>
+				</tag>
+			</tags>
+			<macros>
+				<macro>
+					<macro>{$FULLCONTACTAPIKEY}</macro>
+					<description>API Key for FullContact</description>
+				</macro>
+			</macros>
+			<dashboards>
+				<dashboard>
+					<uuid>4e956890dc39414ea30a138bd93e57cd</uuid>
+					<name>FullQuota Graphs</name>
+					<pages>
+						<page>
+							<widgets>
+								<widget>
+									<type>GRAPH_CLASSIC</type>
+									<width>21</width>
+									<height>5</height>
+									<fields>
+										<field>
+											<type>GRAPH</type>
+											<name>graphid</name>
+											<value>
+												<name>FullContact Company Encrichment</name>
+												<host>FullContact API Provider</host>
+											</value>
+										</field>
+									</fields>
+								</widget>
+								<widget>
+									<type>GRAPH_CLASSIC</type>
+									<y>5</y>
+									<width>21</width>
+									<height>5</height>
+									<fields>
+										<field>
+											<type>GRAPH</type>
+											<name>graphid</name>
+											<value>
+												<name>FullContact Person Enrichment</name>
+												<host>FullContact API Provider</host>
+											</value>
+										</field>
+									</fields>
+								</widget>
+								<widget>
+									<type>GRAPH_CLASSIC</type>
+									<y>10</y>
+									<width>21</width>
+									<height>5</height>
+									<fields>
+										<field>
+											<type>GRAPH</type>
+											<name>graphid</name>
+											<value>
+												<name>FullContact Person Subscriptions</name>
+												<host>FullContact API Provider</host>
+											</value>
+										</field>
+									</fields>
+								</widget>
+								<widget>
+									<type>GRAPH_CLASSIC</type>
+									<y>15</y>
+									<width>21</width>
+									<height>7</height>
+									<fields>
+										<field>
+											<type>GRAPH</type>
+											<name>graphid</name>
+											<value>
+												<name>FullContact Quotas</name>
+												<host>FullContact API Provider</host>
+											</value>
+										</field>
+									</fields>
+								</widget>
+							</widgets>
+						</page>
+					</pages>
+				</dashboard>
+			</dashboards>
+		</template>
+	</templates>
+	<triggers>
+		<trigger>
+			<uuid>a1dc3b3705a94236b224e5322c941d72</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.count)&gt;last(/FullContact API Provider/fullcontact.api.company.enrichment.match.quota)*.5</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.count)&lt;last(/FullContact API Provider/fullcontact.api.company.enrichment.match.quota)*.5</recovery_expression>
+			<name>Full Contact API Company Enrichment Match 50% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.company.enrichment.match.count</opdata>
+			<priority>INFO</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>8f93a73526b44f7e9a06994b22c44c9c</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.count)&gt;last(/FullContact API Provider/fullcontact.api.company.enrichment.match.quota)*.9</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.count)&lt;last(/FullContact API Provider/fullcontact.api.company.enrichment.match.quota)*.9</recovery_expression>
+			<name>Full Contact API Company Enrichment Match 90% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.company.enrichment.match.count</opdata>
+			<priority>WARNING</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>3f92c9381cfe4d86bfe5d125001bfb1c</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.count)&gt;last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.quota)*.5</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.count)&lt;last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.quota)*.5</recovery_expression>
+			<name>Full Contact API Company Enrichment Miss 50% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.company.enrichment.miss.count</opdata>
+			<priority>INFO</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>f217bb6bc22c47439fa0c1581729622a</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.count)&gt;last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.quota)*.9</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.count)&lt;last(/FullContact API Provider/fullcontact.api.company.enrichment.miss.quota)*.9</recovery_expression>
+			<name>Full Contact API Company Enrichment Miss 90% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.company.enrichment.miss.count</opdata>
+			<priority>WARNING</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>9c7c5db3bd124f4481cd30590a7e1d44</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.total.count)&gt;last(/FullContact API Provider/fullcontact.api.company.enrichment.total.quota)*.5</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.total.count)&lt;last(/FullContact API Provider/fullcontact.api.company.enrichment.total.quota)*.5</recovery_expression>
+			<name>Full Contact API Company Enrichment Total 50% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.company.enrichment.total.count</opdata>
+			<priority>INFO</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>baa5685de5234f8ba41a20d387227dcd</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.total.count)&gt;last(/FullContact API Provider/fullcontact.api.company.enrichment.total.quota)*.9</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.total.count)&lt;last(/FullContact API Provider/fullcontact.api.company.enrichment.total.quota)*.9</recovery_expression>
+			<name>Full Contact API Company Enrichment Total 90% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.company.enrichment.total.count</opdata>
+			<priority>WARNING</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>032663af234841398a633684e0a314a1</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.count)&gt;last(/FullContact API Provider/fullcontact.api.company.enrichment.match.quota)*.5</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.count)&lt;last(/FullContact API Provider/fullcontact.api.company.enrichment.match.quota)*.5</recovery_expression>
+			<name>Full Contact API Person Enrichment Match 50% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.person.enrichment.matches.count</opdata>
+			<priority>INFO</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>feed58ed766e48f6a43212e2bec54ff8</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.count)&gt;last(/FullContact API Provider/fullcontact.api.company.enrichment.match.quota)*.9</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.company.enrichment.match.count)&lt;last(/FullContact API Provider/fullcontact.api.company.enrichment.match.quota)*.9</recovery_expression>
+			<name>Full Contact API Person Enrichment Match 90% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.person.enrichment.matches.count</opdata>
+			<priority>WARNING</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>5e21462b36524217917ca0f505b47e3f</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.count)&gt;last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.quota)*.5</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.count)&lt;last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.quota)*.5</recovery_expression>
+			<name>Full Contact API Person Enrichment Miss 50% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.person.enrichment.misses.count</opdata>
+			<priority>INFO</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>9f66e9a284fe48d0a7b899213fcddd54</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.count)&gt;last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.quota)*.9</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.count)&lt;last(/FullContact API Provider/fullcontact.api.person.enrichment.miss.quota)*.9</recovery_expression>
+			<name>Full Contact API Person Enrichment Miss 90% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.person.enrichment.misses.count</opdata>
+			<priority>WARNING</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>00a057b7a71b434b91c7e790a53c6f34</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.person.subscriptions.count)&gt;last(/FullContact API Provider/fullcontact.api.person.subscriptions.quota)*.5</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.person.subscriptions.count)&lt;last(/FullContact API Provider/fullcontact.api.person.subscriptions.quota)*.5</recovery_expression>
+			<name>Full Contact API Person Subscription 50% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.person.subscription.count</opdata>
+			<priority>INFO</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+		<trigger>
+			<uuid>39add44e7f704a0aa9f1e06b49134d5e</uuid>
+			<expression>last(/FullContact API Provider/fullcontact.api.person.subscriptions.count)&gt;last(/FullContact API Provider/fullcontact.api.person.subscriptions.quota)*.9</expression>
+			<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+			<recovery_expression>last(/FullContact API Provider/fullcontact.api.person.subscriptions.count)&lt;last(/FullContact API Provider/fullcontact.api.person.subscriptions.quota)*.9</recovery_expression>
+			<name>Full Contact API Person Subscription 90% Quota</name>
+			<opdata>FullContact API Provider/fullcontact.api.person.subscription.count</opdata>
+			<priority>WARNING</priority>
+			<tags>
+				<tag>
+					<tag>API</tag>
+					<value>FullContact</value>
+				</tag>
+				<tag>
+					<tag>API-Status</tag>
+					<value>OverQuota</value>
+				</tag>
+			</tags>
+		</trigger>
+	</triggers>
+	<graphs>
+		<graph>
+			<uuid>6fd4bdb51b434a98805fe2d71010955b</uuid>
+			<name>FullContact Company Encrichment</name>
+			<graph_items>
+				<graph_item>
+					<sortorder>1</sortorder>
+					<color>1A7C11</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.company.enrichment.match.quota</key>
+					</item>
+				</graph_item>
+				<graph_item>
+					<sortorder>2</sortorder>
+					<color>F63100</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.company.enrichment.miss.count</key>
+					</item>
+				</graph_item>
+			</graph_items>
+		</graph>
+		<graph>
+			<uuid>fd19a855ac2f4b239117c261c902308d</uuid>
+			<name>FullContact Person Enrichment</name>
+			<graph_items>
+				<graph_item>
+					<sortorder>1</sortorder>
+					<color>1A7C11</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.person.enrichment.miss.count</key>
+					</item>
+				</graph_item>
+				<graph_item>
+					<sortorder>2</sortorder>
+					<color>F63100</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.person.enrichment.match.count</key>
+					</item>
+				</graph_item>
+			</graph_items>
+		</graph>
+		<graph>
+			<uuid>b4a61b125cea4b569bad9586c0697715</uuid>
+			<name>FullContact Person Subscriptions</name>
+			<graph_items>
+				<graph_item>
+					<sortorder>1</sortorder>
+					<color>1A7C11</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.person.subscriptions.count</key>
+					</item>
+				</graph_item>
+			</graph_items>
+		</graph>
+		<graph>
+			<uuid>222a98fc63014357b53bc9f486fcef25</uuid>
+			<name>FullContact Quotas</name>
+			<graph_items>
+				<graph_item>
+					<sortorder>1</sortorder>
+					<color>1A7C11</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.company.enrichment.match.quota</key>
+					</item>
+				</graph_item>
+				<graph_item>
+					<sortorder>2</sortorder>
+					<color>F63100</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.company.enrichment.miss.quota</key>
+					</item>
+				</graph_item>
+				<graph_item>
+					<sortorder>3</sortorder>
+					<color>2774A4</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.company.enrichment.total.quota</key>
+					</item>
+				</graph_item>
+				<graph_item>
+					<sortorder>4</sortorder>
+					<color>A54F10</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.person.enrichment.match.quota</key>
+					</item>
+				</graph_item>
+				<graph_item>
+					<sortorder>5</sortorder>
+					<color>FC6EA3</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.person.enrichment.miss.quota</key>
+					</item>
+				</graph_item>
+				<graph_item>
+					<sortorder>6</sortorder>
+					<color>6C59DC</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.person.enrichment.total.quota</key>
+					</item>
+				</graph_item>
+				<graph_item>
+					<sortorder>7</sortorder>
+					<color>AC8C14</color>
+					<item>
+						<host>FullContact API Provider</host>
+						<key>fullcontact.api.person.subscriptions.quota</key>
+					</item>
+				</graph_item>
+			</graph_items>
+		</graph>
+	</graphs>
+</zabbix_export>
